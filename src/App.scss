@@ -1,0 +1,10 @@
+@import "./styles/index.scss";
+
+html {
+    height: 100vh;
+    background: linear-gradient(35deg, rgb(139, 194, 185) 0%, rgb(238, 237, 237) 100%);
+}
+
+body {
+    font-family: $font-family;
+}

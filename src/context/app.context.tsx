@@ -1,13 +1,33 @@
-import { createContext } from "react";
+import { createContext, useReducer } from 'react';
+import AppReducer from './app.reducer';
+import { ICountry } from '../models';
 
-type AppContextType = {
-  
-};
-
-const initState: AppContextType = {
-
+export type InitStateType = {
+    country: ICountry | undefined,
+    isLoading: boolean,
 }
 
-const AppContext = createContext<AppContextType>(initState);
+const initialState: InitStateType = {
+    country: undefined,
+    isLoading: false,
+}
 
-export default AppContext;
+const AppContext = createContext<{
+    state: InitStateType;
+    dispatch: React.Dispatch<any>;
+}>({
+    state: initialState,
+    dispatch: () => null
+});
+
+const AppProvider = ({ children }: any) => {
+    const [state, dispatch] = useReducer(AppReducer, initialState);
+
+    return (
+        <AppContext.Provider value={{ state, dispatch }}>
+            {children}
+        </AppContext.Provider>
+    );
+};
+
+export { AppContext, AppProvider };
