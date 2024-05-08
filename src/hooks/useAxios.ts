@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { API_KEY } from '../constants/api-contants';
+import { API_KEY } from '../constants/api-constants';
 
 // Set your base URL (replace with your API endpoint)
 axios.defaults.baseURL = "http://api.openweathermap.org";

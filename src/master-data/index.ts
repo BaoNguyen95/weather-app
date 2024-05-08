@@ -1,6 +1,6 @@
-export enum STRING_REPLACE {
-    LON = "01",
-    LAT = "02",
+export enum StringReplace {
+    One = "01",
+    Two = "02",
 }
 
 export const COUNTRIES = [

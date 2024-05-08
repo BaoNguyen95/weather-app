@@ -1,3 +1,5 @@
+// in /models/ folder, this file will be a root folder, every modals file will be imported here.
+// in this project, I just need to define some modals so don't need to separate it.
 interface ILonLat {
     lat: number;
     lon: number;
@@ -23,7 +25,17 @@ interface IWind {
     gust: number;
 }
 
+export enum IApiCode {
+    Success = "200",
+    Error = "404",
+}
+export interface IApiResponse<T> {
+    cod: IApiCode;
+    (arg: T): T
+}
+
 export interface IWeather {
+    dt_txt: string;
     coord: ILonLat;
     weather: Array<IWeatherDetails>;
     base: string;
@@ -56,5 +68,15 @@ export interface IWeather {
     timezone: number,
     id: number,
     name: string,
-    cod: number
-}  
+}
+
+export interface IForecast {
+    list: IWeather[];
+    cod: IApiCode;
+}
+
+export interface IForecastFormat {
+    [key: string]: IWeather[]
+}
+
+export type ErrorType = string;

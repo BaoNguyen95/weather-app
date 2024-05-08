@@ -1,3 +1,5 @@
+@import "../../styles/index.scss";
+
 .wa-side-bar {
     display: flex;
     justify-content: center;
@@ -9,12 +11,22 @@
 
     &__container {
         display: flex;
+        min-width: $container-width;
+        justify-content: space-between;
         align-items: center;
+    }
+
+    &__content {
+        display: flex;
         font-size: 14px;
         gap: 5px;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
     }
 
     &__search {
         cursor: pointer;
+        user-select: none;
     }
 }

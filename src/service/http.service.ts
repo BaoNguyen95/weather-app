@@ -1,5 +1,5 @@
 import Axios, { AxiosRequestConfig } from "axios";
-import { API_KEY } from "../constants/api-contants";
+import { API_KEY } from "../constants/api-constants";
 
 Axios.defaults.baseURL = "http://api.openweathermap.org";
 

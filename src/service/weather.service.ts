@@ -1,21 +1,21 @@
-import { API_URL } from "../constants/api-contants";
-import { STRING_REPLACE } from "../master-data";
-import { ICountry, IWeather } from "../models";
+import { API_URL, ERROR_MESSAGE } from "../constants";
+import { StringReplace } from "../master-data";
+import { ErrorType, IApiCode, IApiResponse, ICountry, IForecast, IWeather } from "../models";
 import HttpService from "./http.service";
 
 class WeatherService {
 
     countryName: string;
     httpService: HttpService;
-    lon: string | undefined;
-    lat: string | undefined;
+    lon?: string;
+    lat?: string;
 
     constructor(countryName: string) {
         this.countryName = countryName;
         this.httpService = new HttpService();
     }
 
-    async getDefaultCountryInfo(): Promise<Array<ICountry> | string> {
+    async getDefaultCountryInfo(): Promise<Array<ICountry> | ErrorType> {
         try {
             const url = API_URL.LOCATION + this.countryName;
             const result: Array<ICountry> = await this.httpService.get(url);
@@ -27,16 +27,29 @@ class WeatherService {
         }
     }
 
-    async getCurrentWeather(): Promise<IWeather | string> {
+    async getCurrentWeather(): Promise<IWeather | ErrorType> {
         try {
             if (this.lon && this.lat) {
-                const url = API_URL.CURRENT_WEATHER.replace(STRING_REPLACE.LON, this.lon).replace(STRING_REPLACE.LAT, this.lat);
+                const url = API_URL.CURRENT_WEATHER.replace(StringReplace.One, this.lon).replace(StringReplace.Two, this.lat);
                 const result: IWeather = await this.httpService.get(url);
                 return result;
             }
-            return "Country is undefined.";
+            return ERROR_MESSAGE.COUNTRY_NOT_FOUND as ErrorType;
         } catch (error) {
-            return error as string;
+            return error as ErrorType;
+        }
+    }
+
+    async getFiveDayForecast(): Promise<IWeather[] | ErrorType> {
+        try {
+            if (this.lon && this.lat) {
+                const url = API_URL.FORECAST.replace(StringReplace.One, this.lon).replace(StringReplace.Two, this.lat);
+                const result: IForecast = await this.httpService.get(url);
+                return result.cod === IApiCode.Success ? result.list : ERROR_MESSAGE.COUNTRY_NOT_FOUND;
+            }
+            return ERROR_MESSAGE.COUNTRY_NOT_FOUND as ErrorType;
+        } catch (error) {
+            return error as ErrorType;
         }
     }
 }

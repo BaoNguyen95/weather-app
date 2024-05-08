@@ -1,1 +1,22 @@
-$font-family: Arial, sans-serif;
+// Define project styling in this file.
+// Can separate more files in /styles folder and import in this file
+@import "./mixins.scss";
+
+$font-family: Arial,
+sans-serif;
+
+$white: #ffffff;
+$container-width: 200px;
+
+.wa-container {
+    min-width: $container-width;
+    background-color: $white;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 4px -1px rgb(216, 216, 216);
+    margin-bottom: 10px;
+}
+
+.wa-error-message {
+    color: rgb(145, 0, 0);
+}

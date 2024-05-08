@@ -1,0 +1,16 @@
+// Define mixins in this file.
+
+@mixin wa-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+@mixin wa-text-small-bold {
+    font-size: 10px;
+    font-weight: 600;
+}
+
+@mixin wa-grey-text {
+    font-size: 10px;
+    color: #8f8f8f;
+}

@@ -1,0 +1,11 @@
+@import "../../styles/index.scss";
+
+.wa-box-container {
+    min-width: $container-width;
+
+    &__title {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        @include wa-title();
+    }
+}

@@ -1,9 +1,6 @@
-@import "./styles/index.scss";
+// This file should be the root style, all styling should be define from /styles/ folder.
 
-html {
-    height: 100vh;
-    background: linear-gradient(35deg, rgb(139, 194, 185) 0%, rgb(238, 237, 237) 100%);
-}
+@import "./styles/index.scss";
 
 body {
     font-family: $font-family;
