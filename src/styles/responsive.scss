@@ -1,0 +1,14 @@
+$mobile: 1023px;
+$inch14: 1365px;
+
+@mixin responsive-mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin responsive-13inch {
+  @media (min-width: #{$mobile+1px}) and (max-width: #{$inch14}) {
+    @content;
+  }
+}

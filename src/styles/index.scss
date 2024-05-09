@@ -1,6 +1,7 @@
 // Define project styling in this file.
 // Can separate more files in /styles folder and import in this file
 @import "./mixins.scss";
+@import "./responsive.scss";
 
 $font-family: Arial,
 sans-serif;

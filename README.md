@@ -1,46 +1,23 @@
-# Getting Started with Create React App
+# Getting Started with React Weather App
+1. Features
+    - Current weather summary: **Completed**
+    - Consistent styling approach: **Almost complete**
+    - Search & History: **Not yet completed**
+2. Code Reusability and Scalability: Define Typescript modals and separate modules, every file are exported by index file.
+3. Code Readability: 
+    - File name lower case.
+    - Using BEM to naming CSS class name.
+    - Upper case for Typescript definition.
+    
+4. Filtering andIteration Efficiency: **Not implemented yet**
+5. Web Standards & Compliance: **Not implemented yet**
+6. Responsiveness: **Wrote SCSS mixin to handle responsive but not implemented yet**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Completions
 
-## Available Scripts
+Firstly, I want to say that I have spend much time to analyze the requirement and less time to fully complete this test, but I have tried my best.
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Home page: Search bar, current weather, 5 days forecast
+2. Current weather: All fields are getting from API, only wind icon is not implemented yet
+3. API handling by *service* folder.
+4. Because this test doesn't have much API so I'm refer to use React Context instead of Redux.
