@@ -6,8 +6,8 @@
     align-items: center;
     padding: 10px 20px;
     background-color: #f5f5f5;
-    box-shadow: 0 4px 4px -1px rgb(216, 216, 216);
     gap: 10%;
+    @include box-shadow();
 
     &__container {
         display: flex;

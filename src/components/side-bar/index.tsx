@@ -12,16 +12,14 @@ interface IProp {
 
 const SideBarComponent = ({ onClickSearchIcon, onClickCountry }: IProp) => {
 
-    const { state } = useContext(AppContext);
-
-    const country = state.country;
+    const { state: { country } } = useContext(AppContext);
 
     return (
         <div className="wa-side-bar">
             <div className="wa-side-bar__container">
                 <div className="wa-side-bar__content" onClick={onClickCountry}>
                     <img className="wa-side-bar__icon" src={PinIcon} alt="Location Icon" width={16} height={16} />
-                    {country && <span className="wa-side-bar__info">{country.name}, {country.country}</span>}
+                    {country && <span className="wa-side-bar__info">{country.name}, {country.sys.country}</span>}
                 </div>
                 <img className="wa-side-bar__search" src={SearchIcon} alt="Search Country" width={16} height={16} onClick={onClickSearchIcon} />
             </div>

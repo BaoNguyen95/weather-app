@@ -14,3 +14,7 @@
     font-size: 10px;
     color: #8f8f8f;
 }
+
+@mixin box-shadow {
+    box-shadow: 0 2px 3px -1px rgb(0 0 0 / 41%)
+}

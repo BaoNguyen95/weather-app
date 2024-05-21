@@ -11,37 +11,44 @@ import "./index.scss";
 
 const HomePage = () => {
 
+    const weatherService = WeatherService;
+
     const [currentWeather, setCurrentWeather] = useState<IWeather | string>("");
     const [forecast, setForecast] = useState<IWeather[] | string>("");
     const [isSearch, setIsSearch] = useState(false);
-    const [defaultCountry, setDefaultCountry] = useState(COUNTRIES.find(c => c.Code === "SG"));
 
-    const { dispatch } = useContext(AppContext);
-
-    const onSearch = (country: string) => {
-        setDefaultCountry(COUNTRIES.find(c => c.Code === country));
-        setIsSearch(!isSearch);
-    };
-
-    const getCountryInfo = useCallback(async () => {
-        const weatherService = new WeatherService(defaultCountry?.Name as string);
-        const response = await weatherService.getDefaultCountryInfo();
-        if (response instanceof String) {
-
-        } else {
-            dispatch({ type: ActionTypes.Country, payload: response[0] });
-
-            const currentWeather = await weatherService.getCurrentWeather();
-            const forecast = await weatherService.getFiveDayForecast();
-
-            setCurrentWeather(currentWeather);
-            setForecast(forecast);
-        }
-    }, [defaultCountry, dispatch]);
+    const { state: { country }, dispatch } = useContext(AppContext);
 
     useEffect(() => {
         getCountryInfo();
-    }, [dispatch, getCountryInfo]);
+    }, []);
+
+    const onSearch = (country: string) => {
+        weatherService.searchWeatherByCountry(country).then(async (weather) => {
+            if (weather) {
+                dispatch({ type: ActionTypes.Country, payload: weather });
+                const forecast = await weatherService.getFiveDayForecast();
+                setCurrentWeather(weather);
+                setForecast(forecast);
+            }
+        });
+        setIsSearch(!isSearch);
+    };
+
+    const getCountryInfo = async () => {
+        weatherService.getCurrentLocation().then(async () => {
+            const response = await weatherService.getCurrentWeather();
+            if (response instanceof String) {
+
+            } else {
+                dispatch({ type: ActionTypes.Country, payload: response });
+                const forecast = await weatherService.getFiveDayForecast();
+                
+                setCurrentWeather(response);
+                setForecast(forecast);
+            }
+        })
+    }
 
     return <div className="wa-home-page">
         <SideBarComponent onClickSearchIcon={() => setIsSearch(true)} onClickCountry={() => setIsSearch(false)} />

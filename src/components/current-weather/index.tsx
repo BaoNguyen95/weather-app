@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import { API_URL } from "../../constants";
 import { StringReplace } from "../../master-data";
 import { IWeather } from "../../models";
@@ -35,25 +35,25 @@ const CurrentWeatherComponent = (props: IProps) => {
         ]
 
         return (<div className="wa-current-weather__container">
-            <div className="wa-current-weather__date">{today}</div>
-            <div className="wa-current-weather__details">
-                <WeatherIcon className="wa-current-weather__icon" icon={_data.weather[0].icon} />
-                <div className="wa-current-weather__temperature">
-                    <span className="wa-current-weather__temperature__detail">{convertKelvinToCelsius(_data.main.temp)}°C</span>
-                    <span className="wa-current-weather__temperature__description">{_data.weather[0].description}</span>
+            {!data ? "Loading..." : <><div className="wa-current-weather__date">{today}</div>
+                <div className="wa-current-weather__details">
+                    <WeatherIcon className="wa-current-weather__icon" icon={_data.weather[0].icon} />
+                    <div className="wa-current-weather__temperature">
+                        <span className="wa-current-weather__temperature__detail">{convertKelvinToCelsius(_data.main.temp)}°C</span>
+                        <span className="wa-current-weather__temperature__description">{_data.weather[0].description}</span>
+                    </div>
                 </div>
-            </div>
-            <div className="wa-current-weather__info">
-                {infos.map(f => {
-                    return (<div className="wa-current-weather__info__content" key={f.unit}>
-                        <div className="wa-current-weather__info__content__label">{f.label}</div>
-                        <span className="wa-current-weather__info__content__value">
-                            {f.value}
-                            <span className="wa-current-weather__info__content__unit">{f.unit}</span>
-                        </span>
-                    </div>)
-                })}
-            </div>
+                <div className="wa-current-weather__info">
+                    {infos.map(f => {
+                        return (<div className="wa-current-weather__info__content" key={f.unit}>
+                            <div className="wa-current-weather__info__content__label">{f.label}</div>
+                            <span className="wa-current-weather__info__content__value">
+                                {f.value}
+                                <span className="wa-current-weather__info__content__unit">{f.unit}</span>
+                            </span>
+                        </div>)
+                    })}
+                </div></>}
         </div>)
     }
 

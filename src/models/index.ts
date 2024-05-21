@@ -10,6 +10,10 @@ export interface ICountry extends ILonLat {
     zip: string;
     name: string;
     country: string;
+    state?: string;
+    sys: {
+        country: string;
+    }
 }
 
 interface IWeatherDetails {
